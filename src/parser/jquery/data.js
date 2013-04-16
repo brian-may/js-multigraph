@@ -9,6 +9,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
                 variables_xml,
                 defaultMissingvalueString,
                 defaultMissingopString,
+                interval,                
                 dataVariables = [],
                 data,
                 adap, adapter = ArrayData;
@@ -27,6 +28,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
                 variables_xml = xml.find("variables");
                 defaultMissingvalueString = variables_xml.attr("missingvalue");
                 defaultMissingopString    = variables_xml.attr("missingop");
+                interval = variables_xml.attr("interval");
 
                 if (variables_xml.find(">variable").length > 0) {
                     $.each(variables_xml.find(">variable"), function (i, e) {
@@ -96,6 +98,7 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
                     data.defaultMissingop(defaultMissingopString);
                 }
                 data.adapter(adapter);
+                data.interval(interval);
             }
 
             return data;

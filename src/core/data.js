@@ -79,6 +79,7 @@ window.multigraph.util.namespace("window.multigraph.core", function (ns) {
 
         this.hasA("defaultMissingvalue").which.isA("string");
         this.hasA("defaultMissingop").which.isA("string").and.defaultsTo("eq");
+        this.hasA("interval").which.isA("string");
         this.hasA("adapter");
 
         /**
