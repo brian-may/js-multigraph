@@ -28,7 +28,14 @@ window.multigraph.util.namespace("window.multigraph.parser.jquery", function (ns
                 variables_xml = xml.find("variables");
                 defaultMissingvalueString = variables_xml.attr("missingvalue");
                 defaultMissingopString    = variables_xml.attr("missingop");
-                interval = variables_xml.attr("interval");
+                
+                var intervalString = variables_xml.attr("interval");
+                var datetimeMeasurePattern = /[0-9]+\s*(ms|s|m|H|D|W|M|Y){1}/g;
+                if (intervalString.match(datetimeMeasurePattern) == null) {
+                	interval = window.multigraph.core.DataMeasure.parse(ns.core.DataValue.NUMBER, intervalString);
+                } else {
+                	interval = window.multigraph.core.DataMeasure.parse(ns.core.DataValue.DATETIME, intervalString);
+                }
 
                 if (variables_xml.find(">variable").length > 0) {
                     $.each(variables_xml.find(">variable"), function (i, e) {
